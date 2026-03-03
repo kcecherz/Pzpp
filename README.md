@@ -16,5 +16,4 @@ Temat projektu - Gra w stylu: "Jaka to melodia?"
      - odrzucanie uszkodzenych plików
    c) Modularność
      - Logika gry oddzielona od warstwy fizycznej (np. według wzoru MVVM)
-   d) Intuicyjne sterowanie
-     - Sterowanie klawiszami itp. 
+     - Intuicyjne sterowanie (np. sterowanie klawiszami itp.)
