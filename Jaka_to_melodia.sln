@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jaka_to_melodia", "Jaka_to_melodia\Jaka_to_melodia.csproj", "{6ECDAAF2-064C-4863-B405-8F6B773C21C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B68E2C0A-A371-43D4-8898-24336744C948}
+	EndGlobalSection
+EndGlobal
