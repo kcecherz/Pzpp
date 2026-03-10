@@ -25,9 +25,12 @@ Gra w stylu: **„Jaka to melodia?”**
 
 ### d) Panel wyników
 - Wyświetlanie podsumowania po zakończeniu rundy.
-- Zapisywanie najlepszych wyników (*High Scores*).
+- Zapisywanie wyników (*Historia rozgrywki*).
 - Obsługa rekordu osobistego (*Personal Best*).
+- Porównanie wyników do innych graczy (*Tabela wyników*).
 
+### e) Obsługa gracza
+- Możliwość dodawania, usuwania i wyboru gracza
 ---
 
 ## 2. Wymagania niefunkcjonalne
