@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Jaka_to_melodia"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

@@ -19,6 +19,12 @@ namespace Jaka_to_melodia
         public MainWindow()
         {
             InitializeComponent();
+            MainContentHolder.Content = new MenuView();
+        }
+
+        public void ChangeView(UserControl newView)
+        {
+            MainContentHolder.Content = newView;
         }
     }
 }
