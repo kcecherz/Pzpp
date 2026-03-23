@@ -6,9 +6,24 @@ namespace Jaka_to_melodia
 {
     public partial class SettingsView : UserControl
     {
+        private SettingsManager _settingsManager;
+
         public SettingsView()
         {
             InitializeComponent();
+            _settingsManager = new SettingsManager();
+
+            LoadSavedPath();
+        }
+
+        private void LoadSavedPath()
+        {
+            AppSettings settings = _settingsManager.LoadSettings();
+
+            if (!string.IsNullOrEmpty(settings.MusicFolderPath))
+            {
+                TxtFolderPath.Text = settings.MusicFolderPath;
+            }
         }
 
         private void BtnScan_Click(object sender, RoutedEventArgs e)
@@ -22,7 +37,6 @@ namespace Jaka_to_melodia
             }
 
             SongManager songManager = new SongManager();
-
             List<Song> loadedSongs = songManager.LoadSongsFromDirectory(path);
 
             if (loadedSongs.Count == 0)
@@ -32,6 +46,10 @@ namespace Jaka_to_melodia
             else
             {
                 ListSongs.ItemsSource = loadedSongs;
+
+                AppSettings currentSettings = new AppSettings { MusicFolderPath = path };
+                _settingsManager.SaveSettings(currentSettings);
+
                 MessageBox.Show($"Sukces! Znaleziono {loadedSongs.Count} utworów.", "Gotowe", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

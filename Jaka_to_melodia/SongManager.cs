@@ -19,23 +19,24 @@ namespace Jaka_to_melodia
 
             foreach (string file in files)
             {
-                try
+
+                var tfile = TagLib.File.Create(file);
+
+                string title = string.IsNullOrEmpty(tfile.Tag.Title)
+                    ? Path.GetFileNameWithoutExtension(file)
+                    : tfile.Tag.Title;
+
+                string artist = "Nieznany wykonawca";
+
+                if (tfile.Tag.Performers != null && tfile.Tag.Performers.Length > 0)
                 {
-                    var tfile = TagLib.File.Create(file);
-
-                    string title = string.IsNullOrEmpty(tfile.Tag.Title)
-                        ? Path.GetFileNameWithoutExtension(file)
-                        : tfile.Tag.Title;
-
-                    string artist = tfile.Tag.FirstPerformer ?? "Nieznany wykonawca";
-
-                    songs.Add(new Song(title, artist, file));
+                    artist = string.Join(", ", tfile.Tag.Performers);
                 }
-                catch (Exception)
+                else if (tfile.Tag.AlbumArtists != null && tfile.Tag.AlbumArtists.Length > 0)
                 {
-
-                    continue;
+                    artist = string.Join(", ", tfile.Tag.AlbumArtists);
                 }
+                songs.Add(new Song(title, artist, file));
             }
 
             return songs;
