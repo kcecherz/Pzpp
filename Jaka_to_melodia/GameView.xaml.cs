@@ -22,6 +22,7 @@ namespace Jaka_to_melodia
             TxtPlayerName.Text = "Gra: " + _currentPlayer.Name;
 
             _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Volume = 0.2; 
             _random = new Random();
 
             LoadAndPlayMusic();
@@ -60,7 +61,6 @@ namespace Jaka_to_melodia
             _mediaPlayer.Play();
 
             
-            MessageBox.Show($"Gramy: {_currentSong.DisplayInfo}", "Test Odtwarzacza");
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -70,6 +70,9 @@ namespace Jaka_to_melodia
 
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ChangeView(new MenuView());
+        }
+        private void BtnAnswer_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

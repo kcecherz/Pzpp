@@ -7,13 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TxtPlayerName" FontSize="18" FontWeight="Bold" Foreground="DarkBlue"
-               HorizontalAlignment="Right" VerticalAlignment="Top" 
-               Margin="0,20,20,0"/>
+        <TextBlock x:Name="TxtPlayerName" Grid.Row="0" FontSize="18" FontWeight="Bold" Foreground="DarkBlue"
+               HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10"/>
 
-        <TextBlock Text="Tekst1" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
-        <Button x:Name="BtnBack" Content="Powrót" Width="100" Height="40" Click="BtnBack_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+        <TextBlock Grid.Row="1" Text="Słuchaj uważnie..." FontSize="36" FontWeight="Bold" Foreground="#333"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
+        <UniformGrid Grid.Row="2" Rows="2" Columns="2" Margin="20" Height="200">
+            <Button x:Name="BtnAnswer1" Content="Odpowiedź 1" FontSize="20" Margin="10" Click="BtnAnswer_Click" Background="#FFF"/>
+            <Button x:Name="BtnAnswer2" Content="Odpowiedź 2" FontSize="20" Margin="10" Click="BtnAnswer_Click" Background="#FFF"/>
+            <Button x:Name="BtnAnswer3" Content="Odpowiedź 3" FontSize="20" Margin="10" Click="BtnAnswer_Click" Background="#FFF"/>
+            <Button x:Name="BtnAnswer4" Content="Odpowiedź 4" FontSize="20" Margin="10" Click="BtnAnswer_Click" Background="#FFF"/>
+        </UniformGrid>
+
+        <Button x:Name="BtnBack" Grid.Row="3" Content="Zakończ grę" Width="150" Height="40" 
+            HorizontalAlignment="Center" Margin="0,10,0,20" Click="BtnBack_Click" Background="#FF7F7F"/>
     </Grid>
 </UserControl>
