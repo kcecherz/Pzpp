@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jaka_to_melodia
 {
     public class Profile
     {
+
+        public string Id { get; set; }
+
         public string Name { get; set; }
         public int Highscore { get; set; }
+
         public Profile() { }
+
         public Profile(string name)
         {
+            Id = Guid.NewGuid().ToString();
             Name = name;
-            Highscore = 0; 
+            Highscore = 0;
         }
     }
 }

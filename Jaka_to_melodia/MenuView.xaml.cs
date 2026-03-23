@@ -81,5 +81,30 @@ namespace Jaka_to_melodia
                 RefreshProfilesList();
             }
         }
+        private void BtnEditProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListProfiles.SelectedItem == null)
+            {
+                MessageBox.Show("Wybierz profil z listy, który chcesz edytować!", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string newName = TxtPlayerName.Text.Trim();
+
+            if (string.IsNullOrEmpty(newName))
+            {
+                MessageBox.Show("Wpisz nową nazwę w polu tekstowym na górze ekranu, a następnie kliknij Edytuj!", "Brak nazwy", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Profile selectedPlayer = (Profile)ListProfiles.SelectedItem;
+            selectedPlayer.Name = newName;
+
+            _profileManager.SaveProfiles(_profiles);
+            RefreshProfilesList();
+            TxtPlayerName.Clear();
+
+            MessageBox.Show("Nazwa profilu została zmieniona!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
