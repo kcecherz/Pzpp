@@ -37,5 +37,7 @@
                 FontSize="20" FontWeight="Bold" Click="BtnStart_Click" />
 
         </StackPanel>
+        <Button x:Name="BtnSettings" Content="Muzyka" Width="100" Height="50" 
+        FontSize="16" Background="#A9CCE3" Margin="50,20,650,20" Click="BtnSettings_Click" RenderTransformOrigin="-2.7,7.662" Grid.Row="3"/>
     </Grid>
 </UserControl>

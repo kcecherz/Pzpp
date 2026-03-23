@@ -106,5 +106,12 @@ namespace Jaka_to_melodia
 
             MessageBox.Show("Nazwa profilu została zmieniona!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.ChangeView(new SettingsView());
+        }
     }
+
+
 }
