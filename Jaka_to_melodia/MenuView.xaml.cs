@@ -56,5 +56,30 @@ namespace Jaka_to_melodia
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ChangeView(new GameView(selectedPlayer));
         }
+        private void BtnDeleteProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListProfiles.SelectedItem == null)
+            {
+                MessageBox.Show("Wybierz profil z listy, aby go usunąć!", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            Profile selectedPlayer = (Profile)ListProfiles.SelectedItem;
+
+            MessageBoxResult result = MessageBox.Show(
+                $"Czy na pewno chcesz usunąć profil gracza '{selectedPlayer.Name}'? Tej operacji nie można cofnąć.",
+                "Potwierdzenie usunięcia",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _profiles.Remove(selectedPlayer);
+
+                _profileManager.SaveProfiles(_profiles);
+
+                RefreshProfilesList();
+            }
+        }
     }
 }
