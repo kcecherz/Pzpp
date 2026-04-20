@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36616.10 d17.14
+VisualStudioVersion = 17.14.36616.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jaka_to_melodia", "Jaka_to_melodia\Jaka_to_melodia.csproj", "{6ECDAAF2-064C-4863-B405-8F6B773C21C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jaka_to_melodia.Tests", "Jaka_to_melodia.Tests\Jaka_to_melodia.Tests.csproj", "{2C0F961F-44F8-48E3-BFA0-2F3EA6526267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ECDAAF2-064C-4863-B405-8F6B773C21C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C0F961F-44F8-48E3-BFA0-2F3EA6526267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0F961F-44F8-48E3-BFA0-2F3EA6526267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0F961F-44F8-48E3-BFA0-2F3EA6526267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0F961F-44F8-48E3-BFA0-2F3EA6526267}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
