@@ -14,8 +14,13 @@ namespace Jaka_to_melodia
 
         public Profile(string name)
         {
-            Id = Guid.NewGuid().ToString();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Nazwa użytkownika nie może być pusta!");
+            }
+
             Name = name;
+            Id = Guid.NewGuid().ToString();
             Highscore = 0;
         }
     }
