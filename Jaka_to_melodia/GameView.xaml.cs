@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media; 
+using System.Windows.Media;
 
 namespace Jaka_to_melodia
 {
@@ -26,7 +27,7 @@ namespace Jaka_to_melodia
             InitializeComponent();
             _currentPlayer = player;
             _currentScore = 0;
-            _currentRound = 0; 
+            _currentRound = 0;
 
             _mediaPlayer = new MediaPlayer();
             _mediaPlayer.Volume = 0.2;
@@ -50,13 +51,15 @@ namespace Jaka_to_melodia
             SongManager songManager = new SongManager();
             _songs = songManager.LoadSongsFromDirectory(settings.MusicFolderPath);
 
-            if (_songs.Count > 0)
+            if (_songs.Count >= 4)
             {
                 PlayRandomSong();
             }
             else
             {
-                MessageBox.Show("Nie znaleziono piosenek we wskazanym folderze. Sprawdź ustawienia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Potrzebujesz minimum 4 piosenek w folderze, żeby zagrać!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ChangeView(new MenuView());
             }
         }
 
@@ -71,7 +74,47 @@ namespace Jaka_to_melodia
             _mediaPlayer.Open(new Uri(_currentSong.FilePath));
             _mediaPlayer.Play();
 
-            
+            var wrongSongs = _songs.Where(s => s != _currentSong).OrderBy(x => _random.Next()).Take(3).ToList();
+            var allChoices = new List<Song>(wrongSongs);
+            allChoices.Add(_currentSong);
+            var shuffledChoices = allChoices.OrderBy(x => _random.Next()).ToList();
+
+            BtnAnswer1.Content = shuffledChoices[0].DisplayInfo;
+            BtnAnswer2.Content = shuffledChoices[1].DisplayInfo;
+            BtnAnswer3.Content = shuffledChoices[2].DisplayInfo;
+            BtnAnswer4.Content = shuffledChoices[3].DisplayInfo;
+
+            _timer.Restart();
+        }
+
+        private void BtnAnswer_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            string selectedAnswer = clickedButton.Content.ToString();
+
+            _mediaPlayer.Stop();
+            _timer.Stop();
+
+            if (selectedAnswer == _currentSong.DisplayInfo)
+            {
+                int timeBonus = Math.Max(0, 10000 - (int)_timer.ElapsedMilliseconds);
+                int points = 1000 + (timeBonus / 10);
+                _currentScore += points;
+                MessageBox.Show($"Dobrze!\nZdobywasz {points} punktów!", "Wynik");
+            }
+            else
+            {
+                MessageBox.Show($"Źle!\nPoprawna odpowiedź to: {_currentSong.DisplayInfo}", "Wynik");
+            }
+
+            if (_currentRound < MaxRounds)
+            {
+                PlayRandomSong();
+            }
+            else
+            {
+                EndGame();
+            }
         }
 
         private void EndGame()
@@ -81,7 +124,7 @@ namespace Jaka_to_melodia
 
             if (_currentScore > _currentPlayer.Highscore)
             {
-                MessageBox.Show($"KONIEC GRY!\nNowy rekord życiowy!\nTwój stary wynik to {_currentPlayer.Highscore}, a teraz zdobyłeś {_currentScore} pkt!", "Gratulacje!");
+                MessageBox.Show($"KONIEC GRY!\nNowy rekord!\nTwój to {_currentScore} pkt!", "Gratulacje!");
 
                 _currentPlayer.Highscore = _currentScore;
 
@@ -109,16 +152,7 @@ namespace Jaka_to_melodia
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-
-            if (_currentRound < MaxRounds)
-            {
-                PlayRandomSong();
-            }
-            else
-            {
-                EndGame();
-            }
+            EndGame();
         }
     }
-    
 }
