@@ -15,5 +15,11 @@ namespace Jaka_to_melodia.Tests
 
             Assert.False(string.IsNullOrEmpty(newPlayer.Id));
         }
+        [Fact]
+        public void NewProfile_EmptyName_ShouldThrowException()
+        { 
+            Assert.Throws<ArgumentException>(() => new Profile(""));
+            Assert.Throws<ArgumentException>(() => new Profile("   "));
+        }
     }
 }
