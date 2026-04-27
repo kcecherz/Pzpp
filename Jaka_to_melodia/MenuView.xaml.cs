@@ -47,14 +47,14 @@ namespace Jaka_to_melodia
         {
             if (ListProfiles.SelectedItem == null)
             {
-                MessageBox.Show("Wybierz profil z listy, aby zagrać!", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Wybierz profil z listy, aby rozpocząć grę!", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            Profile selectedPlayer = (Profile)ListProfiles.SelectedItem;
+            Profile selectedProfile = (Profile)ListProfiles.SelectedItem;
 
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.ChangeView(new GameView(selectedPlayer));
+            mainWindow.ChangeView(new LobbyView(selectedProfile));
         }
         private void BtnDeleteProfile_Click(object sender, RoutedEventArgs e)
         {
