@@ -26,21 +26,25 @@ namespace Jaka_to_melodia
 
         private void BtnAddProfile_Click(object sender, RoutedEventArgs e)
         {
-            string newName = TxtPlayerName.Text.Trim();
+            string newNick = TxtPlayerName.Text.Trim();
 
-            if (string.IsNullOrEmpty(newName))
+            if (string.IsNullOrWhiteSpace(newNick))
             {
                 MessageBox.Show("Nick nie może być pusty!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            Profile newProfile = new Profile(newName);
+            ProfileManager pm = new ProfileManager();
+            List<Profile> allProfiles = pm.LoadProfiles();
 
-            _profiles.Add(newProfile);
-            _profileManager.SaveProfiles(_profiles);
+            bool nameExists = allProfiles.Any(p => p.Name.Equals(newNick, StringComparison.OrdinalIgnoreCase));
 
-            TxtPlayerName.Clear();
-            RefreshProfilesList();
+            if (nameExists)
+            {
+                MessageBox.Show("Gracz o takim nicku już istnieje! Wymyśl inną nazwę.", "Nick zajęty", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
@@ -98,6 +102,15 @@ namespace Jaka_to_melodia
             }
 
             Profile selectedPlayer = (Profile)ListProfiles.SelectedItem;
+
+            bool nameExists = _profiles.Any(p => p.Id != selectedPlayer.Id && p.Name.Equals(newName, StringComparison.OrdinalIgnoreCase));
+
+            if (nameExists)
+            {
+                MessageBox.Show("Inny gracz o takim nicku już istnieje! Wymyśl inną nazwę.", "Nick zajęty", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             selectedPlayer.Name = newName;
 
             _profileManager.SaveProfiles(_profiles);
@@ -105,11 +118,6 @@ namespace Jaka_to_melodia
             TxtPlayerName.Clear();
 
             MessageBox.Show("Nazwa profilu została zmieniona!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        private void BtnSettings_Click(object sender, RoutedEventArgs e)
-        {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.ChangeView(new SettingsView());
         }
     }
 

@@ -33,7 +33,7 @@
             <Button x:Name="BtnEditProfile" Content="Edytuj nazwę" Width="120" Height="50" 
                 FontSize="16" Background="#FFFFA5" Margin="0,0,20,0" Click="BtnEditProfile_Click"/>
 
-            <Button x:Name="BtnStart" Content="START GRY" Width="200" Height="50" 
+            <Button x:Name="BtnStart" Content="GRAJ" Width="200" Height="50" 
                 FontSize="20" FontWeight="Bold" Click="BtnStart_Click" />
 
             
